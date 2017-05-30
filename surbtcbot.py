@@ -28,7 +28,7 @@ def handle_command(command, channel):
     if command.startswith(PRECIO):
         u = urlopen('https://www.surbtc.com/api/v2/markets/btc-clp/ticker')
         resp = json.loads(u.read().decode('utf-8'))
-        response = resp["ticker"]
+        response = resp["ticker"]["last_price"]
     elif command.startswith(STATS):
         u = urlopen('https://www.surbtc.com/api/v2/markets/btc-clp/ticker')
         resp = json.loads(u.read().decode('utf-8'))
