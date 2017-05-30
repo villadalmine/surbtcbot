@@ -28,12 +28,12 @@ def handle_command(command, channel):
     if command.startswith(PRECIO):
         u = urlopen('https://www.surbtc.com/api/v2/markets/btc-clp/ticker')
         resp = json.loads(u.read().decode('utf-8'))
-        response = resp["ticker"]["last_price"]
+        response = resp["ticker"]["last_price"][0]
     elif command.startswith(STATS):
         u = urlopen('https://www.surbtc.com/api/v2/markets/btc-clp/ticker')
         resp = json.loads(u.read().decode('utf-8'))
-        r = resp["ticker"]["price_variation_24h"] * 100
-        s = resp["ticker"]["price_variation_7d"] * 100
+        r = resp["ticker"]["price_variation_24h"][0] * 100
+        s = resp["ticker"]["price_variation_7d"][0] * 100
         stat_24 = round(r,2)
         stat_7 = round(s,2)
         response = "Variacion en 7d" + str(stat_7) + "%"  + " ---- " + "Variacion en 24hs" + str(stat_24) + "%"
